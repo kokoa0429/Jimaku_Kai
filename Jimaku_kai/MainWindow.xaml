@@ -1,0 +1,41 @@
+﻿<Window x:Class="Jimaku_kai.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jimaku_kai"
+        mc:Ignorable="d"
+        Title="Jimaku" Height="250" Width="313" ResizeMode="NoResize">
+    <Grid Background="WhiteSmoke">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,5,0,0" Grid.Column="0" Grid.Row="0">
+            <Label Content="配置方法" Padding="0,11,0,11" VerticalAlignment="Center"  Height="40" FontSize="14" HorizontalAlignment="Center"/>
+            <Label Content="フレーム数" Padding="0,11,0,11"  VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" FontSize="14"/>
+            <Label Content="間隔" Padding="0,11,0,11" VerticalAlignment="Center" HorizontalAlignment="Center" Height="40" FontSize="14" />
+        </StackPanel>
+        <StackPanel Margin="0,5,0,0" Grid.Column="1" Grid.Row="0">
+            <ComboBox x:Name="Combo"  Height="40" Width="100" SelectedIndex="0" FontSize="16" ItemsSource="{Binding Layout.Value}" />
+            <DockPanel>
+                <Label  DockPanel.Dock="Right" Content="フレーム" HorizontalAlignment="Right"  VerticalAlignment="Center"  Height="25"/>
+                <TextBox x:Name="FlameText" DockPanel.Dock="Left" Margin="15,0,15,0" Height="40" Text="{Binding Length.Value}" VerticalAlignment="Top" />
+            </DockPanel>
+            <DockPanel>
+                <Label  DockPanel.Dock="Right" Content="フレーム" HorizontalAlignment="Right"  VerticalAlignment="Center"  Height="25"/>
+                <TextBox x:Name="GapText" DockPanel.Dock="Left" Margin="15,0,15,0" Height="40" Text="{Binding Gap.Value}" VerticalAlignment="Top" />
+            </DockPanel>
+        </StackPanel>
+   
+        <CheckBox x:Name="OverWriteCheckBox" Grid.Row="1" Grid.ColumnSpan="2" Margin="15,0,0,0" Content="ファイル名が同じ場合上書きする" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Height="38" IsChecked="{Binding OverWrite.Value}"/>
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="保存" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="center" Width="100" Click="Button_Click"/>
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="キャンセル"  HorizontalAlignment="Right" Margin="0,0,30,0" VerticalAlignment="Center" Width="100" Click="Button_Click_1" />
+
+    </Grid>
+</Window>
