@@ -17,26 +17,42 @@ namespace Jimaku_kai
         public static int Gap;
         public static bool OverWrite;
 
+        private static string arg;
+
         [STAThread]
         public static void Main(string[] args)
         {
 
             LoadConfig();
 
-            if (args.Length != 1)
+            if (args.Length == 0)
             {
                 App app = new App();
+                app.StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
                 app.InitializeComponent();
                 app.Run();
             }
             else
             {
-                MakeFile(args[0]);
+                arg = args[0];
+
+                if (Layout != 2)
+                {
+                    MakeFile();
+                }
+                else if(Layout == 2)
+                {
+                    App app = new App();
+                    app.StartupUri = new Uri("SelectWindow.xaml", UriKind.Relative);
+                    app.InitializeComponent();
+                    app.Run();
+                }
             }
         }
-        private static void MakeFile(string arg)
+        public static void MakeFile()
         {
-                var list = new List<string>();
+            
+            var list = new List<string>();
             using (var sr = new StreamReader(arg))
             {
                 while (!sr.EndOfStream)
@@ -116,7 +132,12 @@ namespace Jimaku_kai
                     sb.AppendLine("blend=0");
                 }
                 Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
-                using (var sw = new StreamWriter(Path.GetFileNameWithoutExtension(arg) + ".exo", OverWrite, sjisEnc))
+            if (!OverWrite && System.IO.File.Exists(Path.GetFileNameWithoutExtension(arg) + ".exo"))
+            {
+                MessageBox.Show("同じ名前のファイルがあるため保存できませんでした。");
+                return;
+            }
+                using (var sw = new StreamWriter(Path.GetFileNameWithoutExtension(arg) + ".exo", !OverWrite, sjisEnc))
                 {
                     sw.Write(sb.ToString());
                     sw.Close();
@@ -134,6 +155,9 @@ namespace Jimaku_kai
                     break;
                 case "縦":
                     i = 1;
+                    break;
+                case "毎回確認":
+                    i = 2;
                     break;
                 default:
                     i = 0;

@@ -10,7 +10,7 @@ namespace Jimaku_kai
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window 
     {
         public MainWindow()
         {
@@ -42,14 +42,12 @@ namespace Jimaku_kai
 
         public Settings()
         {
-            this.Layout = new ReactiveProperty<string[]>(new string[]{"横","縦"});
+            this.Layout = new ReactiveProperty<string[]>(new string[]{"横","縦","毎回確認"});
             this.Length = new ReactiveProperty<int>(App.Length);
             this.Gap = new ReactiveProperty<int>(App.Gap);
             this.OverWrite = new ReactiveProperty<bool>(App.OverWrite);
-
         }
-
-
+        
     }
     
 
