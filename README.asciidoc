@@ -1,3 +1,11 @@
-== KobaAULTool
-Aviutl External tool
+= 字幕改 (Jimaku_Kai)
+kokoa0429 <kokoa@ciebus.net>
+v1.0.1 2019-2-21
 
+=== 機能
+D&Dで改行区切りのテキストファイルを個別にテキストオブジェクトにします。
+
+image::https://ciebus.net/image/Jimaku_Kai/image.gif[]
+
+=== 新機能
+* "毎回選択" オプションの追加
